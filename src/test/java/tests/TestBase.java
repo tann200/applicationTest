@@ -7,7 +7,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
-import pages.Step1;
+import pages.StepOnePage;
 
 public class TestBase {
 
@@ -15,7 +15,7 @@ public class TestBase {
 
     public Environment env = new Environment();
 
-    public final Step1 step1 = new Step1();
+    public final StepOnePage stepOnePage = new StepOnePage();
 
     public final String webUrl = env.getBaseUrl();
 

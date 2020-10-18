@@ -14,6 +14,7 @@ public class TestData {
             applicationModel.accountType = AccountType.P;
             applicationModel.leaseType = LeaseType.FL;
             applicationModel.price = "7500";
+            applicationModel.vatIncluded = true;
             applicationModel.initialAmount = "3000";
             applicationModel.initialPercentage = "10";
             applicationModel.durationYears = "5";
@@ -23,5 +24,21 @@ public class TestData {
             return applicationModel;
 
         }
+
+    public static ApplicationModel businessApplicant(){
+        ApplicationModel applicationModel = new ApplicationModel();
+        applicationModel.accountType = AccountType.C;
+        applicationModel.leaseType = LeaseType.FL;
+        applicationModel.price = "7500";
+        applicationModel.vatIncluded = false;
+        applicationModel.initialAmount = "3000";
+        applicationModel.initialPercentage = "10";
+        applicationModel.durationYears = "5";
+        applicationModel.reminderPercentage = "10";
+        applicationModel.reminderValue = "750";
+        applicationModel.paymentDay = "15";
+        return applicationModel;
+
+    }
 
 }

@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import enums.AccountType;
 import io.qameta.allure.Step;
 import models.ApplicationModel;
 import org.openqa.selenium.By;
@@ -13,12 +14,12 @@ import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class Step1 {
+public class StepOnePage {
 
-    public Step1() {
+    public StepOnePage() {
 
     }
-    private final Logger logger = LoggerFactory.getLogger(Step1.class);
+    private final Logger logger = LoggerFactory.getLogger(StepOnePage.class);
 
     private final SelenideElement accountType = $(byName("account_type"));
     private final SelenideElement accountTypePrivate = $(byId("account_type-P"));
@@ -44,24 +45,53 @@ public class Step1 {
          return String.format("input[name=\"%s\"][value=\"%s\"]", name, value);
      }
 
+     public void  applicantType(ApplicationModel application) {
+        logger.info("Applicant type is : " + application.accountType.toString());
+        if (application.accountType.toString() == "C") {
+            accountTypeBusiness.click();
+        } else {
+            accountTypePrivate.click();
+        }
+     }
+
+     public void chooseLeaseType(ApplicationModel application) {
+         logger.info("Application type is : " + application.accountType.toString());
+
+         if (application.leaseType.toString() == "HP") {
+             leaseTypeHP.click();
+         } else {
+             leaseTypeFL.click();
+         }
+     }
+
      public static SelenideElement submitButton() {
+        /* by text is a flaky option, should be changed to some selector that takes elements from
+        buttons on the page and has some unique way to identify it.
+         */
         return $(By.cssSelector("button[value='Edasi']"));
      }
+
+     public void vatIncludedOption(ApplicationModel application) {
+         logger.info("Vat included option: " + application.vatIncluded.toString());
+         if (application.vatIncluded) {
+             vatIncluded.click();
+         }
+     }
+
     @Step("Submitting application step1")
-    public void submitStep1(ApplicationModel applicationModel){
-         priceField.waitUntil(Condition.exist, 3000).sendKeys(applicationModel.price);
-         logger.info(applicationModel.price);
-         initialAmount.scrollTo().sendKeys(applicationModel.initialAmount);
-         sleep(2000);
-         durationYears.selectOptionByValue(applicationModel.durationYears);
-        sleep(2000);
-         reminderValue.sendKeys(applicationModel.reminderValue);
-        sleep(2000);
-         paymentDay.selectOptionByValue(applicationModel.paymentDay);
-         // Here should be waitUntil(condition.enabled, some timeout value), but fro some reason not working, needs more time to investigate
-         sleep(1000);
-         submitButton().click();
-         vehicleCondition.waitUntil(Condition.appear,3000);
+    public void submitStep1(ApplicationModel application){
+        accountType.waitUntil(Condition.exist, 3000);
+        applicantType(application);
+        chooseLeaseType(application);
+        priceField.sendKeys(application.price);
+        logger.info(application.price);
+        initialAmount.scrollTo().sendKeys(application.initialAmount);
+        vatIncludedOption(application);
+        durationYears.selectOptionByValue(application.durationYears);
+        reminderValue.sendKeys(application.reminderValue);
+        paymentDay.selectOptionByValue(application.paymentDay);
+        //submitButton().waitUntil(Condition.enabled, 3000).click();
+        //vehicleCondition.waitUntil(Condition.appear,3000);
         sleep(3000);
     }
 
