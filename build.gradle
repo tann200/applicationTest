@@ -42,7 +42,7 @@ allure {
 }
 
 dependencies {
-    
+
     implementation group: 'junit', name: 'junit', version: '4.12'
     implementation 'org.hamcrest:hamcrest:2.2'
     implementation 'org.projectlombok:lombok:1.18.12'
