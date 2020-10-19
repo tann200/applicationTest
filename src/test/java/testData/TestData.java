@@ -5,6 +5,8 @@ import enums.LeaseType;
 import models.ApplicationModel;
 
 public class TestData {
+
+
     
     public TestData() {
     }
@@ -17,7 +19,7 @@ public class TestData {
             applicationModel.vatIncluded = true;
             applicationModel.initialAmount = "3000";
             applicationModel.initialPercentage = "10";
-            applicationModel.durationYears = "5";
+            applicationModel.durationYears = "6";
             applicationModel.reminderPercentage = "10";
             applicationModel.reminderValue = "750";
             applicationModel.paymentDay = "15";
@@ -33,7 +35,7 @@ public class TestData {
         applicationModel.vatIncluded = false;
         applicationModel.initialAmount = "3000";
         applicationModel.initialPercentage = "10";
-        applicationModel.durationYears = "5";
+        applicationModel.durationMonths = "6";
         applicationModel.reminderPercentage = "10";
         applicationModel.reminderValue = "750";
         applicationModel.paymentDay = "15";

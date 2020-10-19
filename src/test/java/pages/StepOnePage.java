@@ -54,6 +54,27 @@ public class StepOnePage {
         }
      }
 
+     public void setPeriod(ApplicationModel application) {
+
+         if (application.durationYears != null && application.durationMonths !=null) {
+             logger.info("Setting loan duration to " + application.durationYears
+                     + " years and " + application.durationMonths + " months.");
+             durationYears.selectOptionByValue(application.durationYears);
+             durationMonths.selectOptionByValue(application.durationMonths);
+         } else if (application.durationYears != null){
+             logger.info("Setting loan duration to " + application.durationYears
+                     + " years.");
+             durationYears.selectOptionByValue(application.durationYears);
+         } else if (application.durationMonths !=null){
+             logger.info("Setting loan duration to " + application.durationMonths
+                     + " months.");
+             durationMonths.selectOptionByValue(application.durationMonths);
+         } else {
+             logger.info("Please set the lease duration");
+         }
+
+     }
+
      public void chooseLeaseType(ApplicationModel application) {
          logger.info("Application type is : " + application.accountType.toString());
 
@@ -87,7 +108,8 @@ public class StepOnePage {
         logger.info(application.price);
         initialAmount.scrollTo().sendKeys(application.initialAmount);
         vatIncludedOption(application);
-        durationYears.selectOptionByValue(application.durationYears);
+        setPeriod(application);
+        //durationYears.selectOptionByValue(application.durationYears);
         reminderValue.sendKeys(application.reminderValue);
         paymentDay.selectOptionByValue(application.paymentDay);
         //submitButton().waitUntil(Condition.enabled, 3000).click();

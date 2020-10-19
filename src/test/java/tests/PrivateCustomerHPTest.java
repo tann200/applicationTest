@@ -42,9 +42,29 @@ public class PrivateCustomerHPTest extends TestBase{
 
     }
 
+    @Test(testName = "Test for private applicant FL")
+    public void privateApplicantFlVatNotIncluded(ITestContext context) {
+        this.applicationModel.vatIncluded =false;
+
+        open(webUrl);
+        switchTo().frame(0);
+        stepOnePage.submitStep1(this.applicationModel);
+
+    }
+
     @Test(testName = "Test for private applicant HP")
-    public void privateApplicantHP(ITestContext context) {
+    public void privateApplicantHp(ITestContext context) {
         this.applicationModel.leaseType = LeaseType.HP;
+        open(webUrl);
+        switchTo().frame(0);
+        stepOnePage.submitStep1(this.applicationModel);
+    }
+
+    @Test(testName = "Test for private applicant HP")
+    public void privateApplicantHpVatNotIncluded(ITestContext context) {
+        this.applicationModel.leaseType = LeaseType.HP;
+        this.applicationModel.vatIncluded =false;
+
         open(webUrl);
         switchTo().frame(0);
         stepOnePage.submitStep1(this.applicationModel);

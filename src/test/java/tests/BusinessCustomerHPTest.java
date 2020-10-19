@@ -29,8 +29,6 @@ public class BusinessCustomerHPTest extends TestBase{
     }
 
 
-
-
     @Test(testName = "Test for business Application with lease type FL")
     public void businessApplicantTestFL(ITestContext context) {
         open(webUrl);
@@ -41,6 +39,7 @@ public class BusinessCustomerHPTest extends TestBase{
     @Test(testName = "Test for business Application with lease type HP")
     public void businessApplicantTestHP(ITestContext context) {
         this.applicationModel.leaseType = LeaseType.HP;
+        this.applicationModel.durationYears = "2";
         open(webUrl);
         switchTo().frame(0);
         stepOnePage.submitStep1(this.applicationModel);
