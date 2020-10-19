@@ -34,7 +34,7 @@ public class PrivateCustomerHPTest extends TestBase{
 
 
 
-    @Test(testName = "Test for private applicant FL")
+    @Test(testName = "Test for private applicant FL, vat Included")
     public void privateApplicantFL(ITestContext context) {
         open(webUrl);
         switchTo().frame(0);
@@ -42,9 +42,10 @@ public class PrivateCustomerHPTest extends TestBase{
 
     }
 
-    @Test(testName = "Test for private applicant FL")
+    @Test(testName = "Test for private applicant FL, vat not included, price 15000")
     public void privateApplicantFlVatNotIncluded(ITestContext context) {
         this.applicationModel.vatIncluded =false;
+        this.applicationModel.price = "15000";
 
         open(webUrl);
         switchTo().frame(0);
@@ -52,7 +53,7 @@ public class PrivateCustomerHPTest extends TestBase{
 
     }
 
-    @Test(testName = "Test for private applicant HP")
+    @Test(testName = "Test for private applicant HP, vat Included")
     public void privateApplicantHp(ITestContext context) {
         this.applicationModel.leaseType = LeaseType.HP;
         open(webUrl);
@@ -60,7 +61,7 @@ public class PrivateCustomerHPTest extends TestBase{
         stepOnePage.submitStep1(this.applicationModel);
     }
 
-    @Test(testName = "Test for private applicant HP")
+    @Test(testName = "Test for private applicant HP, vat not included")
     public void privateApplicantHpVatNotIncluded(ITestContext context) {
         this.applicationModel.leaseType = LeaseType.HP;
         this.applicationModel.vatIncluded =false;

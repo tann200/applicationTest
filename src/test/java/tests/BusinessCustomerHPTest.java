@@ -29,17 +29,38 @@ public class BusinessCustomerHPTest extends TestBase{
     }
 
 
-    @Test(testName = "Test for business Application with lease type FL")
-    public void businessApplicantTestFL(ITestContext context) {
+    @Test(testName = "Business applicaiton FL, vat included")
+    public void businessApplicantTestFlVatIncluded(ITestContext context) {
+        this.applicationModel.vatIncluded=true;
+        open(webUrl);
+        switchTo().frame(0);
+        stepOnePage.submitStep1(this.applicationModel);
+    }
+
+    @Test(testName = "Business applicaiton FL, vat not included")
+    public void businessApplicantTestFl(ITestContext context) {
+        this.applicationModel.durationYears = "2";
         open(webUrl);
         switchTo().frame(0);
         stepOnePage.submitStep1(this.applicationModel);
     }
 
     @Test(testName = "Test for business Application with lease type HP")
-    public void businessApplicantTestHP(ITestContext context) {
+    public void businessApplicantTestHp(ITestContext context) {
         this.applicationModel.leaseType = LeaseType.HP;
-        this.applicationModel.durationYears = "2";
+        this.applicationModel.durationYears = "6";
+        this.applicationModel.durationMonths =null;
+        open(webUrl);
+        switchTo().frame(0);
+        stepOnePage.submitStep1(this.applicationModel);
+
+    }
+
+    @Test(testName = "Test for business Application with lease type HP")
+    public void businessApplicantTestHpVatIncluded(ITestContext context) {
+        this.applicationModel.vatIncluded=true;
+        this.applicationModel.leaseType = LeaseType.HP;
+        this.applicationModel.durationYears = "3";
         open(webUrl);
         switchTo().frame(0);
         stepOnePage.submitStep1(this.applicationModel);
