@@ -1,5 +1,6 @@
 # applicationTest
-This is a test application for lease product, which uses java and selenide to run some UI tests with different inputs.
+This is a test application for lease product, which uses java and selenide to run some UI tests with different inputs. 
+TestNG is used as the testrunner engine and dependencies are managed by gradle.
 The project consists of 2 modules named main and test.
 
 In this project main module are located the following:
